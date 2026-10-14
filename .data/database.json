@@ -1,0 +1,128 @@
+{
+  "users": [
+    {
+      "id": "usr_alice_verified",
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "password_hash": "$2b$12$BOaenP9NY0isDYJYCJ5rXeCHPE4gbKoOiTQrQnYljXxOTUpo34jum",
+      "role": "user",
+      "is_verified": true,
+      "verification_token": null,
+      "verification_token_expires_at": null,
+      "reset_password_token": null,
+      "reset_password_expires_at": null,
+      "created_at": "2026-10-14T17:03:01.628Z",
+      "updated_at": "2026-10-14T17:03:01.628Z",
+      "last_login_at": "2026-10-14T17:06:24.193Z"
+    },
+    {
+      "id": "usr_bob_unverified",
+      "name": "Bob Smith",
+      "email": "bob@example.com",
+      "password_hash": "$2b$12$BOaenP9NY0isDYJYCJ5rXeCHPE4gbKoOiTQrQnYljXxOTUpo34jum",
+      "role": "user",
+      "is_verified": false,
+      "verification_token": "a722e2473eb652ee95a578eccd845aab9375fdf39ab53ee07249a94f94252106",
+      "verification_token_expires_at": "2026-10-15T17:03:02.797Z",
+      "reset_password_token": null,
+      "reset_password_expires_at": null,
+      "created_at": "2026-10-14T17:03:01.628Z",
+      "updated_at": "2026-10-14T17:03:01.628Z",
+      "last_login_at": null
+    },
+    {
+      "id": "usr_admin_master",
+      "name": "Security Admin",
+      "email": "admin@example.com",
+      "password_hash": "$2b$12$BOaenP9NY0isDYJYCJ5rXeTsRVv0TLKK0qn78ikLX2XXPxjMFCTY6",
+      "role": "admin",
+      "is_verified": true,
+      "verification_token": null,
+      "verification_token_expires_at": null,
+      "reset_password_token": null,
+      "reset_password_expires_at": null,
+      "created_at": "2026-10-14T17:03:01.628Z",
+      "updated_at": "2026-10-14T17:03:01.628Z",
+      "last_login_at": "2026-10-14T17:03:03.680Z"
+    }
+  ],
+  "audit_logs": [
+    {
+      "id": "log_6dfb5dee1b6b11f6",
+      "user_id": "usr_bob_unverified",
+      "email": "bob@example.com",
+      "action": "LOGIN_BLOCKED_UNVERIFIED",
+      "ip_address": "127.0.0.1",
+      "user_agent": "curl/7.88.1",
+      "status": "BLOCKED",
+      "details": "Attempted login with unverified email",
+      "created_at": "2026-10-14T17:06:30.070Z"
+    },
+    {
+      "id": "log_d664d6af46e67e49",
+      "user_id": "usr_alice_verified",
+      "email": "alice@example.com",
+      "action": "LOGIN_SUCCESS",
+      "ip_address": "127.0.0.1",
+      "user_agent": "curl/7.88.1",
+      "status": "SUCCESS",
+      "details": "Authenticated as user. JWT tokens issued.",
+      "created_at": "2026-10-14T17:06:24.193Z"
+    },
+    {
+      "id": "log_baa5cb693fc8c2fc",
+      "user_id": "usr_admin_master",
+      "email": "admin@example.com",
+      "action": "LOGIN_SUCCESS",
+      "ip_address": "127.0.0.1",
+      "user_agent": "Unknown",
+      "status": "SUCCESS",
+      "details": "Authenticated as admin. JWT tokens issued.",
+      "created_at": "2026-10-14T17:03:03.680Z"
+    },
+    {
+      "id": "log_3ace560e092457aa",
+      "user_id": "usr_alice_verified",
+      "email": "alice@example.com",
+      "action": "LOGIN_SUCCESS",
+      "ip_address": "127.0.0.1",
+      "user_agent": "Unknown",
+      "status": "SUCCESS",
+      "details": "Authenticated as user. JWT tokens issued.",
+      "created_at": "2026-10-14T17:03:03.271Z"
+    },
+    {
+      "id": "log_80a731f551d24f2a",
+      "user_id": "usr_alice_verified",
+      "email": "alice@example.com",
+      "action": "SYSTEM_SEED",
+      "ip_address": "127.0.0.1",
+      "user_agent": "AuthGuard-Init/1.0",
+      "status": "SUCCESS",
+      "details": "Demo account seeded (Verified User)",
+      "created_at": "2026-10-14T17:03:01.628Z"
+    },
+    {
+      "id": "log_9ba0a1511585192a",
+      "user_id": "usr_bob_unverified",
+      "email": "bob@example.com",
+      "action": "SYSTEM_SEED",
+      "ip_address": "127.0.0.1",
+      "user_agent": "AuthGuard-Init/1.0",
+      "status": "SUCCESS",
+      "details": "Demo account seeded (Unverified User with pending token)",
+      "created_at": "2026-10-14T17:03:01.628Z"
+    },
+    {
+      "id": "log_19161ff37b6e244f",
+      "user_id": "usr_admin_master",
+      "email": "admin@example.com",
+      "action": "SYSTEM_SEED",
+      "ip_address": "127.0.0.1",
+      "user_agent": "AuthGuard-Init/1.0",
+      "status": "SUCCESS",
+      "details": "Demo account seeded (System Administrator)",
+      "created_at": "2026-10-14T17:03:01.628Z"
+    }
+  ]
+}

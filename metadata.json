@@ -1,0 +1,6 @@
+{
+  "name": "AuthGuard - Node.js & Express Authentication Suite",
+  "description": "Production-ready Node.js & Express authentication system featuring bcrypt hashing, JWT session management, email verification, password reset, comprehensive route tests, and deployment guide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

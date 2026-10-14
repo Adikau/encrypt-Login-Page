@@ -1,0 +1,68 @@
+services:
+  # ---------------------------------------------------------------------------
+  # AuthGuard Application Service
+  # ---------------------------------------------------------------------------
+  authguard-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: authguard-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - APP_URL=http://localhost:3000
+      - JWT_SECRET=change-this-to-a-cryptographically-secure-random-key-in-prod-2026
+      - JWT_EXPIRES_IN=15m
+      - JWT_REFRESH_SECRET=change-this-to-a-different-secure-random-refresh-key-2026
+      - JWT_REFRESH_EXPIRES_IN=7d
+      - BCRYPT_SALT_ROUNDS=12
+      - DATABASE_URL=postgres://authuser:authpassword123@postgres:5432/authguard_db
+      - SMTP_HOST=smtp.mailtrap.io
+      - SMTP_PORT=587
+      - SMTP_USER=smtp_username
+      - SMTP_PASS=smtp_password
+      - EMAIL_FROM=AuthGuard Security <noreply@authguard.app>
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - app_data:/app/.data
+    networks:
+      - authguard-network
+
+  # ---------------------------------------------------------------------------
+  # PostgreSQL Database Service
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: authguard-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=authuser
+      - POSTGRES_PASSWORD=authpassword123
+      - POSTGRES_DB=authguard_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/init-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U authuser -d authguard_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - authguard-network
+
+volumes:
+  app_data:
+    driver: local
+  pgdata:
+    driver: local
+
+networks:
+  authguard-network:
+    driver: bridge
